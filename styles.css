@@ -1,0 +1,16 @@
+.the-table{
+	background-color: darkgreen;
+	border: 5px solid brown;
+	margin-top:  50px;
+	padding: 30px 0;
+	border-radius:  10px;
+
+}
+
+
+.card{
+	height:  120px;
+	color: black;
+	background-color: #fff;
+	margin:  10px;
+}
