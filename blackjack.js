@@ -1,11 +1,15 @@
+$(document).ready(function(){
 //GLOBALS
-const freshDeck = createDeck();
-theDeck = freshDeck;
+var theDeck = createDeck();
 var playersHand = []; //players1Squares in tictactoe
 var dealersHand = []; //players2Squares in tictactoe
 var topOfDeck = 4;
-
-$(document).ready(function(){
+var total = 0;
+$('button').hover(function(){
+	$(this).addClass("hover")
+}, function(){
+	$(this).removeClass("hover")
+})
 
 	$('.deal-button').click(function(){
 		//shuffle deck
@@ -22,6 +26,8 @@ $(document).ready(function(){
 		calculateTotal(playersHand, 'player');
 		calculateTotal(dealersHand, 'dealer');
 		$('.message').text('Hit or Stand?');
+		// $('.hit-button').css("visibility": "visible");
+		// $('.stand-button').css("visiblilty": "visible");
 	})
 
 	$('.hit-button').click(function(){
@@ -36,32 +42,33 @@ $(document).ready(function(){
 		}
 	})
 
-
 	$('.stand-button').click(function(){
-		var dealerTotal = calculateTotal(dealersHand, 'dealer');
+		var dealerTotal = calculateTotal(dealersHand, 'dealer');  //I DON'T KNOW WHY IT WOULDN'T WORK UNLESS I COMMENTED THISOUT (WAS ERRORING CAN'T FIND .LENGTH OF UNDEFINED IN CALCULATETOTAL FUNCTION)
 			while(dealerTotal < 17){
 				dealersHand.push(theDeck.shift());
 				var slotForNewCard = dealersHand.length;
 				var lastCardIndex = (dealersHand.length - 1);
 				placeCard('dealer', slotForNewCard, dealersHand[lastCardIndex]);
 				calculateTotal(dealersHand, 'dealer');
-				dealertotal = calculateTotal(dealersHand, 'dealer'); 
+				// dealertotal = calculateTotal(dealersHand, 'dealer'); 
+				checkWin();
 			}	
-		checkWin();
 	})
-});
 
 function checkWin(){
 	playerTotal = calculateTotal(playersHand, 'player');
 	dealerTotal = calculateTotal(dealersHand, 'dealer');
 	winner = "";
-
+	$('.reset').fadeIn("slow");
+	$('.reset-button').click(function(){
+			reset();
 	if(playerTotal > 21){
 		$('.message').text('BUST! Dealer Wins');
-		$('.deal-button stand-button deal-button').addClass('.disabled');
+		$('.deal-button stand-button deal-button').prop('disabled', true);
 	}else if(dealerTotal > 21){
 		//dealer busted, game over, player wins, put msg in DOM
 		$('.message').text('DEALER BUST! YOU WIN!');
+		$('.deal-button stand-button deal-button').prop('disabled', true);
 	}else {
 		if(playerTotal > dealerTotal){
 			//player one, say in DOM
@@ -77,10 +84,11 @@ function checkWin(){
 			$('.message').text('TIE!');
 		}
 	} // no one busted, see who's higher
+})
 }
 
 function reset(){
-	theDeck = freshDeck; //make a copy of our constant freshDeck
+	theDeck = createDeck(); //make a copy of our constant freshDeck
 	// the deck needs to be reset
 	playersHand = [];
 	dealersHand = [];
@@ -138,8 +146,15 @@ function calculateTotal(hand, who){
 	return(total);
 }
 
+// function checkAces(){	
+// 	if(total > 12){
+// 		any aces = 1 point
+// 	}else {
+// 		any ace <= 11 points
+// 	}
 
-
+// }
+});
 
 
 

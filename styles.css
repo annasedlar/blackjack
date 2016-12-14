@@ -1,5 +1,6 @@
 body{
 	background-color: antiquewhite;
+	background-image: url("chip.png");
 }
 
 .the-table{
@@ -12,9 +13,11 @@ body{
 
 .head{
 	text-align: center;
+	background-color: antiquewhite;
 	font-family: Verdana;
-	font-size: 50px;
+	font-size: 60px;
 	color: #471f08;
+	height: 100px;
 }
 
 .row{
@@ -24,8 +27,14 @@ body{
 .card{
 	height:  120px;
 	width: 80px;
-	color: black;
 	background-color: #08500a;
+	margin:  5px;
+	text-align: center;
+}
+.deck{
+	height:  120px;
+	width: 80px;
+	background-color: #08600a;
 	margin:  5px;
 	text-align: center;
 }
@@ -36,6 +45,7 @@ body{
 
 img{
 	max-height: 100%;
+	border-radius: 5px;
 }
 
 .dealer-total, .player-total{
@@ -56,16 +66,33 @@ button{
     font-family: Verdana;
 }
 
+/* .hit-button{
+	visibility: hidden;
+}
+
+.stand-button{
+	visibility: hidden;
+} */
+
+
+.hover{
+	font-size: 24px;
+
+}
+
 .message{
 	text-align: center;
 	color: white;
 	font-size:  16px;
+	margin-top: -40px;
 }
 
-
-
-
-
+.reset{
+	text-align: center;
+	color: white;
+	font-size: 16px;
+	display: none;
+}
 
 
 
