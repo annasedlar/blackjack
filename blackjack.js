@@ -29,9 +29,14 @@ $(document).ready(function(){
 	});
 
 	$('.hit-button').click(function(){
+		playersHand.push(theDeck[4]);
+		placeCard(playersHand[2], "player", "three");
+		calculateTotal('player', playersHand);
+
 	});
 
 	$('.stand-button').click(function(){
+		// dealersHand.push(theDeck[]);
 	});
 });
 
@@ -73,12 +78,23 @@ function calculateTotal(who, hand){
 
 	var classToTarget = '.'+who+'-total-number';
 	$(classToTarget).text(total);
+
+	$('.message').text(who + " wins!");
 }
 
 
 
 
 
+// Set messages after game over
+// The table/game looks like Rob made it. Change this.
+// What about those stupid 11, 12, 13?
+// What about Aces?
+// The player can hit forever?
+// There is no win counter/bet system
+// There is no "deck" to draw from.
+// There is no delay on showing the cards... it's instant. 
+// You can see the dealers 2nd card on deal. That's unfair (to the house).
 
 
 
