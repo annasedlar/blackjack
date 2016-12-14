@@ -21,6 +21,7 @@ $(document).ready(function(){
 		placeCard('dealer', 2, dealersHand[1]);
 		calculateTotal(playersHand, 'player');
 		calculateTotal(dealersHand, 'dealer');
+		$('.message').text('Hit or Stand?');
 	})
 
 	$('.hit-button').click(function(){
@@ -41,7 +42,7 @@ $(document).ready(function(){
 			while(dealerTotal < 17){
 				dealersHand.push(theDeck.shift());
 				var slotForNewCard = dealersHand.length;
-				var lastCardIndex = dealersHand.length - 1;
+				var lastCardIndex = (dealersHand.length - 1);
 				placeCard('dealer', slotForNewCard, dealersHand[lastCardIndex]);
 				calculateTotal(dealersHand, 'dealer');
 				dealertotal = calculateTotal(dealersHand, 'dealer'); 
@@ -56,7 +57,8 @@ function checkWin(){
 	winner = "";
 
 	if(playerTotal > 21){
-		$('.message').text('BUST');
+		$('.message').text('BUST! Dealer Wins');
+		$('.deal-button stand-button deal-button').addClass('.disabled');
 	}else if(dealerTotal > 21){
 		//dealer busted, game over, player wins, put msg in DOM
 		$('.message').text('DEALER BUST! YOU WIN!');
@@ -67,8 +69,8 @@ function checkWin(){
 			winner = "player";
 		}else if(dealerTotal > playerTotal){
 			//dealer won. Dom.
-			winner = "dealer";
-			$('.message').text('Dealer Wins');
+			winner = "Dealer";
+			$('.message').text(winner + ' Wins');
 		}else{
 			winner = "tie";
 			//say in the Dom

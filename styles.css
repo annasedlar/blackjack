@@ -30,6 +30,10 @@ body{
 	text-align: center;
 }
 
+.disabled{
+	visibility: hidden;
+}
+
 img{
 	max-height: 100%;
 }
