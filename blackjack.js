@@ -132,9 +132,7 @@ function shuffleDeck(){
 function placeCard(who, where, whatCard){
 	var classSelector = '.' + who + '-cards .card-' + where;
 	$(classSelector).html('<img src="cards/' + whatCard + '.png">');
-	$('.deal-button').click(function(){
-		$(this).addClass('flip');
-	})
+	
 }
 
 function calculateTotal(hand, who){
