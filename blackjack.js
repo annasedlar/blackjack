@@ -132,20 +132,32 @@ function shuffleDeck(){
 function placeCard(who, where, whatCard){
 	var classSelector = '.' + who + '-cards .card-' + where;
 	$(classSelector).html('<img src="cards/' + whatCard + '.png">');
+	$('.deal-button').click(function(){
+		$(this).addClass('flip');
+	})
 }
 
 function calculateTotal(hand, who){
 	var total = 0;
 	var cardValue = 0;
-	var hasAce = false;
+	var totalAces = 0;
 	for(let i=0; i < hand.length; i++){
 		cardValue = Number(hand[i].slice(0, -1));
-		if(cardValue > 10){ //compensating for face cards --all equal ten
+		if(cardValue == 1){ 
+			hasAce = true;
+			cardValue = 11;
+			totalAces ++;
+		}else if(cardValue > 10){
 			cardValue = 10;
 		}
-
 		total += cardValue;
 	}
+	for(let i=0; i < totalAces; i++){
+		if(total > 21){
+			total -=1;
+		}
+	}
+
 		//update the dom with the new total 
 	var classSelector = '.'+who + '-total-number';
 	$(classSelector).text(total);

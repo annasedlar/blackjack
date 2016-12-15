@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="card-flip.css">	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#threeDChild').click(function(){
+				$(this).toggleClass('flip');
+			});
+			$('.face-holder').click(function(){
+				$(this).toggleClass('flip');
+			})
+
+
+		});
+
+	</script>
+
+</head>
+
+<body>
+
+
+<!-- Outer container to make a 3D space/cube for its children -->
+		<!-- inner container that will hold both divs, which will be back2back, will be able to play in 3D -->
+	<div class="face-holder">
+		<div class="card-front">
+			<img src="cards/11h.png">
+		</div>
+		<div class="card-back">
+			<img src="cards/deck.png">
+		</div>
+	</div>
+	<div class="face-holder">
+		<div class="card-front">
+			<img src="cards/8h.png">
+		</div>
+		<div class="card-back">
+			<img src="cards/deck.png">
+		</div>
+	</div>
+	<div class="face-holder">
+		<div class="card-front">
+			<img src="cards/2s.png">
+		</div>
+		<div class="card-back">
+			<img src="cards/deck.png">
+		</div>
+	</div>
+	<div class="face-holder">
+		<div class="card-front">
+			<img src="cards/7d.png">
+		</div>
+		<div class="card-back">
+			<img src="cards/deck.png">
+		</div>
+	</div>
+
+
+
+
+
+	<div id="parent">
+		<div id="threeDChild">Hello</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

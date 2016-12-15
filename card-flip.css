@@ -1,0 +1,121 @@
+#parent{
+	text-align: center;
+	margin: auto;
+	margin-top: 200px;
+	height: 200px;
+	width: 200px;
+	border: 5px solid black;
+	perspective: 200px;  /*adds depth to a 2D element*/
+	transition:  all 3s;
+
+}
+
+#threeDChild{
+	border: 5px solid blue;
+	transform: rotateY(45deg);
+	transform: rotateX(60deg); /*like a paper falling over*/
+	transition: all 2s;
+	height: 180px;
+	width: 180px;
+}
+
+
+#parent.flip{
+	perspective: 100px;
+}
+
+#threeDChild.flip{
+	transform: rotateY(45deg); 
+	border: solid red;
+}
+
+.card{   /*parent*/
+	height:300px;
+	width:  300px;
+	border:  2px solid black;
+	perspective: 500px; /*this is the one property we need to make it 3D*/
+}
+
+/*The child that can play 3d and is holding the two face cards*/
+.face-holder{
+	margin-left: 300px;
+	height: 150px;
+	width: 150px;
+	max-height: 100%;
+	position: relative;   /*the children of face-holder will be absolute*/
+	transition: all 2s;
+	transform-style: preserve-3d;
+	float: left;  /*important for 3d*/
+/* 	perspective-origin:50% 50%; */
+
+}
+.face-holder:hover{
+	margin-left: 300px;
+	height: 150px;
+	width: 150px;
+	max-height: 100%;
+	position: relative;   /*the children of face-holder will be absolute*/
+	transition: all 2s;
+	transform-style: preserve-3d;  /*important for 3d*/
+/* 	perspective-origin:50% 50%; */
+	transform: rotateY(1800deg);
+}
+
+/* the actual face of the card and face of the back, they need a 3D space */
+.card-front, .card-back{
+	position: absolute; /*so they're one on top of the other*/
+	top: 0;
+	left: 0;
+	border: 2px;
+	backface-visibility: hidden; /*do NOT show back of div!!!!*/
+	perspective-origin: center center;
+}
+
+
+
+/* look up css perspective origin */
+
+.card-front{
+	transform: rotateY(-180deg);
+	}
+
+.card-back{
+
+}
+
+.flip{
+	transform: rotateY(1800deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
