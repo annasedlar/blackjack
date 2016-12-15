@@ -1,15 +1,14 @@
 $(document).ready(function(){
 //GLOBALS
-var theDeck = createDeck();
-var playersHand = []; //players1Squares in tictactoe
-var dealersHand = []; //players2Squares in tictactoe
-var topOfDeck = 4;
-var total = 0;
-$('button').hover(function(){
-	$(this).addClass("hover")
-}, function(){
-	$(this).removeClass("hover")
-})
+	var theDeck = createDeck();
+	var playersHand = []; //players1Squares in tictactoe
+	var dealersHand = []; //players2Squares in tictactoe
+
+	$('button').hover(function(){
+		$(this).addClass("hover")
+	}, function(){
+		$(this).removeClass("hover")
+	})
 
 	$('.deal-button').click(function(){
 		//shuffle deck
@@ -39,6 +38,7 @@ $('button').hover(function(){
 			placeCard('player', slotForNewCard, playersHand[lastCardIndex]);
 			calculateTotal(playersHand, 'player');
 			checkWin();
+		}else{$('.deal-button stand-button hit-button').prop('disabled', true);
 		}
 	})
 
@@ -49,43 +49,48 @@ $('button').hover(function(){
 				var slotForNewCard = dealersHand.length;
 				var lastCardIndex = (dealersHand.length - 1);
 				placeCard('dealer', slotForNewCard, dealersHand[lastCardIndex]);
-				calculateTotal(dealersHand, 'dealer');
-				// dealertotal = calculateTotal(dealersHand, 'dealer'); 
-				checkWin();
+				dealerTotal = calculateTotal(dealersHand, 'dealer');
 			}	
+			checkWin();
 	})
 
 function checkWin(){
-	playerTotal = calculateTotal(playersHand, 'player');
-	dealerTotal = calculateTotal(dealersHand, 'dealer');
-	winner = "";
-	$('.reset').fadeIn("slow");
-	$('.reset-button').click(function(){
-			reset();
+	var playerTotal = calculateTotal(playersHand, 'player');
+	var dealerTotal = calculateTotal(dealersHand, 'dealer');
+
 	if(playerTotal > 21){
-		$('.message').text('BUST! Dealer Wins');
-		$('.deal-button stand-button deal-button').prop('disabled', true);
+		$('.message').text('BUST! Dealer Wins').addClass('end-message');
+		$('.deal-button stand-button hit-button').prop('disabled', true);
+		$('.reset').fadeIn("slow");
+		$('.reset-button').click(function(){
+			reset();})
 	}else if(dealerTotal > 21){
 		//dealer busted, game over, player wins, put msg in DOM
-		$('.message').text('DEALER BUST! YOU WIN!');
-		$('.deal-button stand-button deal-button').prop('disabled', true);
+		$('.message').text('DEALER BUST! YOU WIN!').addClass('end-message');
+		$('.deal-button stand-button hit-button').prop('disabled', true);
+		$('.reset').fadeIn("slow");
+		$('.reset-button').click(function(){
+			reset();})
 	}else {
 		if(playerTotal > dealerTotal){
 			//player one, say in DOM
-			$('.message').text('You win!');
-			winner = "player";
+			$('.message').text('You win!').addClass('end-message');
+			$('.deal-button stand-button hit-button').prop('disabled', true);
 		}else if(dealerTotal > playerTotal){
 			//dealer won. Dom.
-			winner = "Dealer";
-			$('.message').text(winner + ' Wins');
+			$('.message').text(winner + ' Wins').addClass('end-message');
+			$('.deal-button stand-button hit-button').prop('disabled', true);
 		}else{
-			winner = "tie";
 			//say in the Dom
-			$('.message').text('TIE!');
+			$('.message').text('TIE!').addClass('end-message');
+			$('.deal-button stand-button hit-button').prop('disabled', true);
 		}
+		$('.reset').fadeIn("slow");
+		$('.reset-button').click(function(){
+		reset();})
 	} // no one busted, see who's higher
-})
 }
+
 
 function reset(){
 	theDeck = createDeck(); //make a copy of our constant freshDeck
@@ -93,8 +98,9 @@ function reset(){
 	playersHand = [];
 	dealersHand = [];
 	$('.card').html('');
-	playerTotal = calculateTotal(playersHand, 'player');
-	dealerTotal = calculateTotal(dealersHand, 'dealer');
+	var playerTotal = calculateTotal(playersHand, 'player');
+	var dealerTotal = calculateTotal(dealersHand, 'dealer');
+	$('.message').text('').removeClass('end-message');
 }
 
 function createDeck(){
@@ -113,8 +119,8 @@ function createDeck(){
 
 function shuffleDeck(){
 	for(var i = 0; i < 1000; i++){
-		randomCard1 = Math.floor(Math.random() * theDeck.length);
-		randomCard2 = Math.floor(Math.random() * theDeck.length);
+		var randomCard1 = Math.floor(Math.random() * theDeck.length);
+		var randomCard2 = Math.floor(Math.random() * theDeck.length);
 
 		var temp = theDeck[randomCard1];
 		theDeck[randomCard1] = theDeck[randomCard2];
